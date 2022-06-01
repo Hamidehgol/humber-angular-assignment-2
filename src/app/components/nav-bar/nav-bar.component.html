@@ -1,8 +1,8 @@
 <div class="container">
     <h1>{{ title }}</h1>
-    <search-bar></search-bar>
-    <a>Products</a>
-    <a>Cart</a>
-    <a>Orders</a>
-    <a>Account Info</a>
+    <search-bar (textEntered)="onSearch($event)"></search-bar>
+    <a  routerLink="/Products">Products</a>
+    <a routerLink="/Cart">Cart</a>
+    <a routerLink="/Orders">Orders</a>
+    <a routerLink="/Account Info">Account Info</a>
 </div>

@@ -13,5 +13,8 @@ export class SearchBarComponent implements OnInit {
   ngOnInit(): void {
     
   }
+   onSearch(event : any){
+     this.textEntered.emit(event.target.value);
+   }
 
 }
