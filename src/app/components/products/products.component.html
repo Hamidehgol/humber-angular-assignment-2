@@ -1,10 +1,6 @@
-<nav-bar title="Humber e-store" (searchedText)="filterProductsBySearch($event)"></nav-bar>
-<div class="container">
-    <item></item>
-    <item></item>
-    <item></item>
-    <item></item>
-    <item></item>
-</div>
+<nav-bar title="Humber e-store" (searchEntered) = "filteredProductsBySearch($event)"></nav-bar>
 
+<div class="container">
+    <item *ngFor="let products of filteredProducts" [item]="products"></item>    
+</div>
 

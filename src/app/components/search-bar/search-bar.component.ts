@@ -8,13 +8,15 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class SearchBarComponent implements OnInit {
 
   @Output() textEntered: EventEmitter<string> = new EventEmitter()
+  
   constructor() { }
 
   ngOnInit(): void {
     
   }
-   onSearch(event : any){
-     this.textEntered.emit(event.target.value);
-   }
+
+  onKeyup(event: KeyboardEvent) {
+    this.textEntered.emit((event.target as HTMLInputElement).value);
+  }
 
 }

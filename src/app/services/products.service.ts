@@ -1,6 +1,9 @@
+import { OrderData } from './../modles/order-data.interface';
+import { ProductData } from './../modles/product-data.interface';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+
 
 
 @Injectable({
@@ -8,41 +11,36 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 })
 export class ProductsService {
 
-  public listOfProducts = new BehaviorSubject<any>([]);
-
-  cartofItems: any = [];
+  subject = new Subject()
+  private listOfProducts = [];
+  cartItems: ProductData[] = [];
+  
 
   constructor(private http: HttpClient) { }
 
-  
   getProducts() {
-    return this.http.get('/assets/product-data.json');
-  }
-
-  getOrders() {
     
-    return this.http.get('/assets/order-data.json');
+    return this.http.get('/assets/product-data.json')as Observable<ProductData>;
+    
+  }  
+
+  getOrderData(): Observable<OrderData> {
+    // http call to retrieve list of orders
+    return this.http.get('/assets/order-data.json')as Observable<OrderData>;    
   }
 
-  getCartItems(){
-    return this.listOfProducts.asObservable();
+
+
+  setCartItems(product:ProductData[]) {
+    this.cartItems = product;
+    
   }
 
-  setCartItems(product: any){
-    this.cartofItems.push(product);
-    this.listOfProducts.next(product);
-  }
-
-  addCartItems(product: any){
-    this.cartofItems.push(product);
-    this.listOfProducts.next(this.cartofItems);
-    console.log(this.cartofItems);
+  getCartItems () {
+    return this.cartItems;
   }
 
   clearCart() {
-    this.cartofItems = [];
-    this.listOfProducts.next(this.cartofItems);
+    this.cartItems = [];
   }
-
-
 }

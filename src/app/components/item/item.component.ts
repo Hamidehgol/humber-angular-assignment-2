@@ -1,4 +1,4 @@
-import { ProductData } from './../../modles/product-data.interface';
+import { ProductData } from 'src/app/modles/product-data.interface';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ProductsService } from 'src/app/services/products.service';
 
@@ -8,15 +8,19 @@ import { ProductsService } from 'src/app/services/products.service';
   styleUrls: ['./item.component.scss']
 })
 export class ItemComponent implements OnInit {
-  @Input() itemofproductData!: ProductData;
-  
 
-  constructor(private carts: ProductsService) { }
+  @Input() item!: ProductData;
+
+
+  
+  constructor(private proService: ProductsService) { }
 
   ngOnInit(): void {
+    
+  }
 
+  addToCart() {
+    this.proService.cartItems.push(this.item)
   }
-  addtoItem(itemofproductData: any) {
-    this.carts.addCartItems(itemofproductData);
-  }
+
 }

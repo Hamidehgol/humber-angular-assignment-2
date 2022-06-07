@@ -1,5 +1,5 @@
-import { Component, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-import { EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
   selector: 'nav-bar',
@@ -7,13 +7,25 @@ import { EventEmitter } from '@angular/core';
   styleUrls: ['./nav-bar.component.scss']
 })
 export class NavBarComponent {
-@Output() searchedText : EventEmitter<string> = new EventEmitter()
   @Input() title = '';
-  constructor() { }
+  
+  @Output() searchEntered: EventEmitter<string> = new EventEmitter()
+  
+  productArr: any;  
+
+  constructor(private proService: ProductsService) { }
 
   ngOnInit(): void {
+    this.productArr = this.proService.getProducts().subscribe(
+      res =>{
+        this.productArr = res; 
+        
+      });
   }
-onSearch(text: string){
-this.searchedText.emit(text);
-}
+  
+   
+  onSearch(text: string) {  
+    this.searchEntered.emit(text);
+   } 
+
 }

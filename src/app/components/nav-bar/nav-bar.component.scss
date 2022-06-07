@@ -20,10 +20,12 @@ a {
     padding: 8px;
     height: 12px;
     cursor: pointer; 
+    color: white;
+    
 }
 
 a:hover {
-    color: black;
+    color:rgba(120, 93, 121, 0.719);
 }
 
 .container:last-child {

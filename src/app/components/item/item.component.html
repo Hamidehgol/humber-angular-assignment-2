@@ -1,17 +1,16 @@
 <mat-card class="example-card">
   <mat-card-header>
-    <h2>{{itemofproductData.name}}</h2>
+  <!-- add product name below -->
+    <h2>{{ item.name }}</h2>
   </mat-card-header>
 
-
-
-
-  <img mat-card-image [src]="itemofproductData.image" alt="image of Product">
+  <!-- add image url below -->
+  <img mat-card-image [src] = "item.image" alt="products"> 
   <mat-card-content>
-
-    <h3>Price:{{itemofproductData.price}}</h3>
+  <!-- add product price below -->
+    <h3>Price:{{ item.price }} </h3>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-button (click) = "addtoItem(itemofproductData)">Add to cart</button>
+    <button mat-button (click) = "addToCart()">Add to cart</button>
   </mat-card-actions>
 </mat-card>
